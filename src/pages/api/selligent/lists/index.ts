@@ -7,15 +7,14 @@ export default async function handler(
 ) {
   const options = {
     headers: {
-      "Accep|t": "application/json",
+      "Accept": "application/json",
       "X-ApiKey": `${process.env.SELLIGENT_API_KEY}:${process.env.SELLIGENT_API_SECRET}`,
     },
   };
 
-  const res = await axios.get(
-    `${process.env.SELLIGENT_BASE_URL}/organizations/${process.env.SELLIGENT_TEST_ORGANIZATION}/lists`,
+  const listResponse = await axios.get(`${process.env.SELLIGENT_BASE_URL}/organizations/${process.env.SELLIGENT_TEST_ORGANIZATION}/lists`,
     options
   );
 
-  response.status(200).json(res.data);
+  response.status(200).json(listResponse.data);
 }

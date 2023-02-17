@@ -7,11 +7,11 @@ export default function HomePage() {
   const [data, setData] = useState<any>([])
 
   useEffect(() => {
-    const fetchData = async () => getSelligentLists()
+    const fetchData = async () => getSelligentLists({organization: "AHS"})
     fetchData().then(data => setData(data))
   }, [])
 
-  console.log(data)
+  console.log(data);
 
   return (
     <main>

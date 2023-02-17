@@ -1,6 +1,23 @@
-import axios from "axios"
+import axios from "axios";
 
-export async function getSelligentLists(){
-    const data = await axios.get("/api/selligent/lists");
-    return data.data.lists;
+interface IParams {
+    organization?: string;
+}
+
+export async function getSelligentLists(params: IParams){
+    const lists = await axios.request({
+        method: "GET",
+        baseURL:"/api/selligent/lists/list-information",
+        params
+    });
+    return lists.data;
+}
+
+export async function fetchData(URL: string, options: any){
+    const repsonse = await axios.get(URL, options);
+    return await repsonse.data;
+}
+
+export function getAllData(URLs: string[], options: any){
+    return Promise.all(URLs.map(URL => fetchData(URL, options)))
 }
